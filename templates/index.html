@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <h1>Insights Generator</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" id="csvFileInput" accept=".csv" required class="csvFileInput">
+    </form>
+    <div id="columnHeadings"></div>
+    <label for="firstParameter">Select First Parameter:</label>
+    <select id="firstParameter"></select>
+    <label for="secondParameter">Select Second Parameter:</label>
+    <select id="secondParameter"></select>
+    <button onclick="generateInsights()">Generate Insights</button>
+    
+    <!-- Handle error feedback from Flask -->
+    <div id="insightsError"></div>
+    
+    <!-- Update graph display logic -->
+    <div id="insightsGraph">
+        {% if graph_path %}
+            <img src="{{ graph_path }}" alt="Insights Graph">
+            <br>
+            <a href="/download_insights/{{ graph_path.split('/').pop() }}">Download Insights Graph</a>
+        {% elif status_code == 400 %}
+            <p id="error-message">Error generating insights. Please try again.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
