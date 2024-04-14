@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <h1>Insights Generator</h1>
+    <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+        <input type="file" id="csvFileInput" name="file" accept=".csv" required class="csvFileInput">
+        <label for="firstParameter">Select First Parameter:</label>
+        <select id="firstParameter" name="firstParameter"></select>
+        <label for="secondParameter">Select Second Parameter:</label>
+        <select id="secondParameter" name="secondParameter"></select>
+        <button type="button" onclick="generateInsights()">Generate Insights</button>
+    </form>
+    
+    <!-- Handle error feedback from Flask -->
+    <div id="insightsError"></div>
+    
+    <!-- Update graph display logic -->
+    <div id="insightsGraph"></div>
+</body>
+</html>
